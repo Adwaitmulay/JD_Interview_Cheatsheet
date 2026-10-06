@@ -1,0 +1,38 @@
+﻿[
+  {
+    "technology": "Docker",
+    "category": "devops",
+    "aliases": ["docker containers", "containerization"],
+    "fundamentals": ["images", "containers", "Dockerfile", "registries", "volumes", "networks"],
+    "oneLiners": ["Docker packages applications and dependencies into containers.", "An image is a template used to create containers."],
+    "modules": ["images", "containers", "volumes", "networks", "Compose"],
+    "libraries": [],
+    "concepts": ["containerization", "layers", "port mapping", "persistent storage"],
+    "dataStructures": [],
+    "algorithms": ["image build layers"],
+    "codingPatterns": ["multi-stage builds", "containerized services"],
+    "tools": ["Docker CLI", "Docker Compose", "Docker Hub"],
+    "commonMistakes": ["large images", "running as root", "secrets inside images"],
+    "interviewTraps": ["image vs container", "COPY vs ADD", "volume vs bind mount", "container vs VM"],
+    "quickRevision": ["images", "containers", "Dockerfile", "volumes", "networks"],
+    "commands": ["docker build -t app .", "docker run app", "docker ps", "docker compose up"]
+  },
+  {
+    "technology": "Kubernetes",
+    "category": "devops",
+    "aliases": ["k8s", "kube"],
+    "fundamentals": ["pods", "deployments", "services", "namespaces", "configmaps", "secrets"],
+    "oneLiners": ["Kubernetes orchestrates containerized workloads.", "A Pod is the smallest deployable unit in Kubernetes."],
+    "modules": ["Pods", "Deployments", "Services", "Ingress", "ConfigMaps", "Secrets"],
+    "libraries": [],
+    "concepts": ["orchestration", "scaling", "service discovery", "rolling updates", "self healing"],
+    "dataStructures": [],
+    "algorithms": ["scheduling", "rolling deployment"],
+    "codingPatterns": ["declarative configuration", "microservice deployment"],
+    "tools": ["kubectl", "Helm", "Minikube"],
+    "commonMistakes": ["wrong resource limits", "poor probes", "exposed secrets"],
+    "interviewTraps": ["Pod vs Deployment", "Service types", "ConfigMap vs Secret", "liveness vs readiness"],
+    "quickRevision": ["Pods", "Deployments", "Services", "Ingress", "ConfigMaps", "Secrets"],
+    "commands": ["kubectl get pods", "kubectl get deployments", "kubectl apply -f app.yaml"]
+  }
+]

@@ -1,0 +1,20 @@
+﻿[
+  {
+    "technology": "AWS",
+    "category": "cloud",
+    "aliases": ["amazon web services"],
+    "fundamentals": ["regions", "availability zones", "IAM", "compute", "storage", "networking"],
+    "oneLiners": ["AWS is a cloud computing platform.", "IAM controls identities and permissions.", "S3 provides object storage."],
+    "modules": ["EC2", "S3", "RDS", "Lambda", "VPC", "IAM", "CloudWatch"],
+    "libraries": ["AWS SDK"],
+    "concepts": ["scalability", "high availability", "load balancing", "autoscaling", "serverless"],
+    "dataStructures": [],
+    "algorithms": ["autoscaling", "load balancing"],
+    "codingPatterns": ["serverless", "event-driven architecture"],
+    "tools": ["AWS CLI", "CloudWatch"],
+    "commonMistakes": ["overly broad IAM permissions", "public storage buckets", "poor cost controls"],
+    "interviewTraps": ["EC2 vs Lambda", "S3 vs EBS", "RDS vs DynamoDB", "region vs availability zone"],
+    "quickRevision": ["IAM", "EC2", "S3", "RDS", "Lambda", "VPC"],
+    "commands": ["aws configure", "aws s3 ls", "aws ec2 describe-instances"]
+  }
+]

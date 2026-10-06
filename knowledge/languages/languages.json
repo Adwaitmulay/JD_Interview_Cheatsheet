@@ -1,0 +1,1165 @@
+[
+  {
+    "technology": "C",
+    "category": "language",
+    "aliases": [
+      "c language"
+    ],
+    "fundamentals": [
+      "syntax",
+      "variables",
+      "data types",
+      "operators",
+      "control flow",
+      "functions",
+      "arrays",
+      "strings",
+      "pointers",
+      "structures",
+      "unions",
+      "memory management"
+    ],
+    "oneLiners": [
+      "C is a procedural compiled language.",
+      "Pointers store memory addresses.",
+      "malloc allocates dynamic memory.",
+      "free releases dynamically allocated memory."
+    ],
+    "modules": [
+      "preprocessor",
+      "functions",
+      "pointers",
+      "structures",
+      "file handling"
+    ],
+    "libraries": [
+      "stdio.h",
+      "stdlib.h",
+      "string.h",
+      "math.h",
+      "ctype.h"
+    ],
+    "concepts": [
+      "pointers",
+      "memory allocation",
+      "stack vs heap",
+      "recursion",
+      "structures",
+      "function pointers"
+    ],
+    "dataStructures": [
+      "arrays",
+      "linked lists",
+      "stacks",
+      "queues",
+      "trees",
+      "hash tables"
+    ],
+    "algorithms": [
+      "searching",
+      "sorting",
+      "recursion",
+      "graph traversal"
+    ],
+    "codingPatterns": [
+      "two pointers",
+      "recursion",
+      "pointer manipulation"
+    ],
+    "tools": [
+      "GCC",
+      "GDB",
+      "Make"
+    ],
+    "commonMistakes": [
+      "memory leaks",
+      "dangling pointers",
+      "buffer overflow",
+      "uninitialized variables"
+    ],
+    "interviewTraps": [
+      "pointer vs array",
+      "malloc vs calloc",
+      "stack vs heap"
+    ],
+    "quickRevision": [
+      "pointers",
+      "memory management",
+      "structures",
+      "strings",
+      "recursion"
+    ],
+    "commands": [
+      "gcc file.c -o app",
+      "./app",
+      "gdb ./app"
+    ]
+  },
+  {
+    "technology": "C++",
+    "category": "language",
+    "aliases": [
+      "cpp",
+      "cplusplus"
+    ],
+    "fundamentals": [
+      "syntax",
+      "variables",
+      "data types",
+      "control flow",
+      "functions",
+      "references",
+      "pointers",
+      "classes",
+      "objects"
+    ],
+    "oneLiners": [
+      "C++ is a compiled multi-paradigm language.",
+      "RAII ties resource lifetime to object lifetime.",
+      "STL provides reusable containers and algorithms."
+    ],
+    "modules": [
+      "OOP",
+      "STL",
+      "templates",
+      "memory management",
+      "exceptions",
+      "multithreading"
+    ],
+    "libraries": [
+      "iostream",
+      "vector",
+      "string",
+      "algorithm",
+      "map",
+      "unordered_map",
+      "memory",
+      "thread"
+    ],
+    "concepts": [
+      "inheritance",
+      "polymorphism",
+      "encapsulation",
+      "abstraction",
+      "virtual functions",
+      "smart pointers",
+      "move semantics",
+      "templates"
+    ],
+    "dataStructures": [
+      "vector",
+      "list",
+      "stack",
+      "queue",
+      "deque",
+      "set",
+      "map",
+      "unordered_map",
+      "trees",
+      "graphs"
+    ],
+    "algorithms": [
+      "binary search",
+      "sorting",
+      "BFS",
+      "DFS",
+      "dynamic programming",
+      "greedy"
+    ],
+    "codingPatterns": [
+      "two pointers",
+      "sliding window",
+      "binary search",
+      "recursion",
+      "backtracking"
+    ],
+    "tools": [
+      "GCC",
+      "GDB",
+      "CMake"
+    ],
+    "commonMistakes": [
+      "memory leaks",
+      "dangling references",
+      "object slicing",
+      "incorrect ownership"
+    ],
+    "interviewTraps": [
+      "pointer vs reference",
+      "stack vs heap",
+      "vector vs list",
+      "map vs unordered_map",
+      "unique_ptr vs shared_ptr"
+    ],
+    "quickRevision": [
+      "OOP",
+      "STL",
+      "pointers",
+      "smart pointers",
+      "templates",
+      "memory management"
+    ],
+    "commands": [
+      "g++ main.cpp -o app",
+      "./app",
+      "gdb ./app"
+    ],
+    "conceptDetails": {
+      "STL": {
+        "what": "The Standard Template Library provides reusable containers, algorithms and iterators.",
+        "why": "It provides tested and reusable data structures and algorithms.",
+        "how": "Use containers such as vector, map and unordered_map together with STL algorithms.",
+        "example": "vector<int> v = {3,1,2}; sort(v.begin(), v.end());",
+        "code": "vector<int> v = {3,1,2}; sort(v.begin(), v.end());",
+        "interviewQuestions": [
+          {
+            "question": "vector vs list?",
+            "answer": "vector provides contiguous storage and fast random access; list uses linked nodes."
+          },
+          {
+            "question": "map vs unordered_map?",
+            "answer": "map keeps keys ordered; unordered_map uses hashing and provides average constant-time lookup."
+          },
+          {
+            "question": "What are iterators?",
+            "answer": "Iterators provide a generalized way to traverse container elements."
+          }
+        ],
+        "followUps": [
+          "How does unordered_map handle collisions?",
+          "vector size vs capacity?"
+        ],
+        "quiz": [
+          {
+            "question": "Which STL container stores key-value pairs with ordered keys?",
+            "answer": "map"
+          }
+        ],
+        "visual": "STL ? Containers ? Algorithms ? Iterators"
+      },
+      "Memory Management": {
+        "what": "C++ provides mechanisms for controlling object lifetime and memory.",
+        "why": "Correct memory management prevents leaks, dangling pointers and double deletion.",
+        "how": "Modern C++ prefers RAII and smart pointers such as unique_ptr and shared_ptr.",
+        "example": "unique_ptr automatically releases owned memory when its lifetime ends.",
+        "code": "auto p = std::make_unique<int>(10);",
+        "interviewQuestions": [
+          {
+            "question": "What is RAII?",
+            "answer": "RAII ties resource lifetime to object lifetime so resources are released automatically during destruction."
+          },
+          {
+            "question": "unique_ptr vs shared_ptr?",
+            "answer": "unique_ptr represents exclusive ownership; shared_ptr supports shared ownership using reference counting."
+          },
+          {
+            "question": "What is a memory leak?",
+            "answer": "A memory leak occurs when allocated memory remains unreachable and cannot be reclaimed."
+          }
+        ],
+        "followUps": [
+          "What is weak_ptr?",
+          "What is double deletion?"
+        ],
+        "quiz": [
+          {
+            "question": "Which smart pointer represents exclusive ownership?",
+            "answer": "unique_ptr"
+          }
+        ],
+        "visual": "Acquire Resource ? Object Lifetime ? Automatic Release"
+      },
+      "Pointers": {
+        "what": "A pointer stores the memory address of another object.",
+        "why": "Pointers enable dynamic memory, efficient data structures and direct memory access.",
+        "how": "Use * for pointer declaration/dereferencing and & to obtain an address.",
+        "example": "int x = 10; int* p = &x;",
+        "code": "int x = 10; int* p = &x; cout << *p;",
+        "interviewQuestions": [
+          {
+            "question": "Pointer vs reference?",
+            "answer": "A pointer stores an address and can be null; a reference acts as an alias for an existing object."
+          },
+          {
+            "question": "What is a dangling pointer?",
+            "answer": "A dangling pointer refers to memory whose lifetime has ended."
+          }
+        ],
+        "followUps": [
+          "What is pointer arithmetic?",
+          "What is a null pointer?"
+        ],
+        "quiz": [
+          {
+            "question": "Which operator dereferences a pointer?",
+            "answer": "*"
+          }
+        ],
+        "visual": "Pointer ? Address ? Object"
+      }
+    }
+  },
+  {
+    "technology": "Java",
+    "category": "language",
+    "aliases": [
+      "java programming"
+    ],
+    "fundamentals": [
+      "syntax",
+      "variables",
+      "data types",
+      "control flow",
+      "methods",
+      "classes",
+      "objects",
+      "packages"
+    ],
+    "oneLiners": [
+      "Java is a class-based object-oriented language.",
+      "The JVM executes Java bytecode.",
+      "Garbage collection automatically reclaims eligible memory."
+    ],
+    "modules": [
+      "OOP",
+      "Collections",
+      "Exception Handling",
+      "Generics",
+      "Streams",
+      "Concurrency"
+    ],
+    "libraries": [
+      "java.util",
+      "java.io",
+      "java.time",
+      "java.lang",
+      "java.util.concurrent"
+    ],
+    "concepts": [
+      "OOP",
+      "inheritance",
+      "interfaces",
+      "abstract classes",
+      "exceptions",
+      "generics",
+      "streams",
+      "multithreading",
+      "JVM"
+    ],
+    "dataStructures": [
+      "ArrayList",
+      "LinkedList",
+      "HashMap",
+      "HashSet",
+      "Queue",
+      "Stack",
+      "TreeMap"
+    ],
+    "algorithms": [
+      "sorting",
+      "searching",
+      "BFS",
+      "DFS",
+      "dynamic programming"
+    ],
+    "codingPatterns": [
+      "two pointers",
+      "sliding window",
+      "hashing",
+      "binary search",
+      "recursion"
+    ],
+    "tools": [
+      "JDK",
+      "Maven",
+      "Gradle",
+      "JUnit",
+      "Git"
+    ],
+    "commonMistakes": [
+      "incorrect equals/hashCode",
+      "resource leaks",
+      "unchecked exceptions",
+      "poor collection choice"
+    ],
+    "interviewTraps": [
+      "== vs equals",
+      "ArrayList vs LinkedList",
+      "HashMap internals",
+      "JDK vs JRE vs JVM",
+      "checked vs unchecked exceptions"
+    ],
+    "quickRevision": [
+      "OOP",
+      "Collections",
+      "exceptions",
+      "streams",
+      "multithreading",
+      "JVM"
+    ],
+    "commands": [
+      "javac Main.java",
+      "java Main"
+    ],
+    "levels": {
+      "fresher": [
+        "Java syntax",
+        "data types",
+        "OOP",
+        "arrays",
+        "strings",
+        "basic collections",
+        "exception handling"
+      ],
+      "junior": [
+        "OOP design",
+        "Collections Framework",
+        "Generics",
+        "Streams",
+        "Exception Handling",
+        "JVM basics",
+        "multithreading basics"
+      ],
+      "mid": [
+        "JVM internals",
+        "memory management",
+        "Garbage Collection",
+        "Collections internals",
+        "HashMap internals",
+        "Streams and functional programming",
+        "multithreading and concurrency",
+        "synchronization",
+        "ExecutorService",
+        "Java performance",
+        "design patterns",
+        "SOLID principles",
+        "clean code",
+        "testing with JUnit",
+        "Maven/Gradle",
+        "production debugging"
+      ],
+      "senior": [
+        "JVM architecture",
+        "GC tuning",
+        "JVM performance profiling",
+        "concurrency architecture",
+        "distributed systems",
+        "design patterns",
+        "system design",
+        "scalability",
+        "fault tolerance",
+        "observability",
+        "production troubleshooting",
+        "technical leadership"
+      ]
+    },
+    "conceptDetails": {
+      "OOP": {
+        "what": "Object-Oriented Programming organizes software around objects containing data and behavior.",
+        "why": "It improves modularity, reuse, maintainability, and extensibility.",
+        "how": "Java implements OOP through classes, objects, encapsulation, inheritance, abstraction, and polymorphism.",
+        "example": "A BankAccount class can encapsulate balance and expose deposit and withdraw methods.",
+        "code": "class BankAccount { private double balance; void deposit(double amount) { balance += amount; } }",
+        "interviewQuestions": [
+          "What are the four pillars of OOP?",
+          "What is the difference between abstraction and encapsulation?",
+          "Explain compile-time and runtime polymorphism."
+        ],
+        "followUps": [
+          "Why is composition often preferred over inheritance?",
+          "Can Java support multiple inheritance?"
+        ],
+        "quiz": [
+          {
+            "question": "Which OOP principle hides internal implementation details?",
+            "answer": "Abstraction"
+          }
+        ],
+        "visual": "OOP ? Encapsulation ? Abstraction ? Inheritance ? Polymorphism"
+      },
+      "inheritance": {
+        "what": "Inheritance allows one class to acquire properties and behavior from another class.",
+        "why": "It enables code reuse and represents an IS-A relationship.",
+        "how": "A subclass extends a superclass using the extends keyword.",
+        "example": "Dog extends Animal means Dog inherits accessible members of Animal.",
+        "code": "class Dog extends Animal { void bark() { System.out.println(\"Bark\"); } }",
+        "interviewQuestions": [
+          "What is inheritance in Java?",
+          "What are the types of inheritance supported by Java?",
+          "Why does Java not support multiple inheritance through classes?"
+        ],
+        "followUps": [
+          "How can Java achieve multiple inheritance?",
+          "What is method overriding?"
+        ],
+        "quiz": [
+          {
+            "question": "Which keyword is used for class inheritance?",
+            "answer": "extends"
+          }
+        ],
+        "visual": "Superclass ? Subclass"
+      },
+      "interfaces": {
+        "what": "An interface defines a contract that implementing classes must follow.",
+        "why": "Interfaces provide abstraction and support loose coupling.",
+        "how": "A class implements an interface using the implements keyword.",
+        "example": "PaymentService can define pay(), while different payment classes implement it.",
+        "code": "interface Payment { void pay(); } class UPI implements Payment { public void pay() { } }",
+        "interviewQuestions": [
+          "What is an interface?",
+          "Interface vs abstract class?",
+          "Can an interface contain implemented methods?"
+        ],
+        "followUps": [
+          "What are default and static methods in interfaces?",
+          "Can a class implement multiple interfaces?"
+        ],
+        "quiz": [
+          {
+            "question": "Which keyword connects a class to an interface?",
+            "answer": "implements"
+          }
+        ],
+        "visual": "Interface ? Contract ? Implementing Classes"
+      },
+      "exceptions": {
+        "what": "Exception handling manages abnormal conditions that occur during program execution.",
+        "why": "It prevents unexpected failures and allows controlled error handling.",
+        "how": "Java uses try, catch, finally, throw, and throws.",
+        "example": "A program can catch ArithmeticException when dividing by zero.",
+        "code": "try { int x = 10 / 0; } catch (ArithmeticException e) { System.out.println(\"Error\"); }",
+        "interviewQuestions": [
+          "Checked vs unchecked exceptions?",
+          "Difference between throw and throws?",
+          "When is finally executed?"
+        ],
+        "followUps": [
+          "Can finally be skipped?",
+          "Can we have multiple catch blocks?"
+        ],
+        "quiz": [
+          {
+            "question": "Which block handles an exception?",
+            "answer": "catch"
+          }
+        ],
+        "visual": "try ? exception ? catch ? finally"
+      },
+      "generics": {
+        "what": "Generics provide type safety by allowing classes and methods to operate on specified types.",
+        "why": "They reduce casting and catch type errors at compile time.",
+        "how": "Type parameters such as <T> are used with classes, methods, and collections.",
+        "example": "List<String> restricts the list to String values.",
+        "code": "List<String> names = new ArrayList<>();",
+        "interviewQuestions": [
+          "Why are generics used in Java?",
+          "What is type erasure?",
+          "What is the difference between <? extends T> and <? super T>?"
+        ],
+        "followUps": [
+          "Can generics work with primitive types?",
+          "What is a bounded type parameter?"
+        ],
+        "quiz": [
+          {
+            "question": "What problem do generics primarily solve?",
+            "answer": "Type safety"
+          }
+        ],
+        "visual": "Generic Type ? Compile-time Type Safety"
+      },
+      "Collections": {
+        "what": "The Java Collections Framework provides interfaces and implementations for storing and manipulating groups of objects.",
+        "why": "It provides reusable data structures and algorithms instead of requiring custom implementations.",
+        "how": "Choose interfaces such as List, Set, or Map and use implementations such as ArrayList, HashSet, and HashMap.",
+        "example": "Use ArrayList when ordered elements and indexed access are required.",
+        "code": "List<String> names = new ArrayList<>(); names.add(\"Adwait\");",
+        "interviewQuestions": [
+          {
+            "question": "ArrayList vs LinkedList?",
+            "answer": "ArrayList uses a resizable array and provides fast indexed access. LinkedList uses linked nodes and is better suited to frequent insertion or removal through known positions."
+          },
+          {
+            "question": "How does HashMap work internally?",
+            "answer": "HashMap stores entries using hash-based bucket selection. Keys are hashed to locate a bucket, and collisions are handled within the bucket."
+          },
+          {
+            "question": "HashSet vs HashMap?",
+            "answer": "HashSet stores unique values, while HashMap stores key-value pairs."
+          }
+        ],
+        "followUps": [
+          "Why should equals and hashCode be consistent?",
+          "What happens when two keys have the same hash?",
+          "When would you choose TreeMap instead of HashMap?"
+        ],
+        "quiz": [
+          {
+            "question": "Which collection stores key-value pairs?",
+            "answer": "Map"
+          }
+        ],
+        "visual": "Collection ? List / Set / Queue / Map"
+      },
+      "JVM": {
+        "what": "The JVM executes Java bytecode and provides runtime services such as memory management and garbage collection.",
+        "why": "It allows Java bytecode to run across platforms with a compatible JVM.",
+        "how": "Java source is compiled into bytecode, which the JVM loads, verifies, and executes.",
+        "example": "A Java .class file can run on different operating systems when a compatible JVM is available.",
+        "code": "java MyProgram",
+        "interviewQuestions": [
+          {
+            "question": "What is the JVM?",
+            "answer": "The JVM is the runtime environment that executes Java bytecode."
+          },
+          {
+            "question": "JDK vs JRE vs JVM?",
+            "answer": "JVM executes bytecode, JRE provides the JVM and runtime libraries, and JDK includes development tools along with the JRE."
+          },
+          {
+            "question": "What is garbage collection?",
+            "answer": "Garbage collection automatically identifies and reclaims memory occupied by objects that are no longer reachable."
+          }
+        ],
+        "followUps": [
+          "What is heap memory?",
+          "What is stack memory?",
+          "How does a garbage collector identify unreachable objects?"
+        ],
+        "quiz": [
+          {
+            "question": "Which component executes Java bytecode?",
+            "answer": "JVM"
+          }
+        ],
+        "visual": "Java Source ? Compiler ? Bytecode ? JVM ? Machine Execution"
+      },
+      "Multithreading": {
+        "what": "Multithreading allows multiple threads to execute concurrently within a process.",
+        "why": "It can improve responsiveness and throughput for suitable workloads.",
+        "how": "Java provides Thread, Runnable, ExecutorService, synchronization utilities, and concurrent collections.",
+        "example": "A web server can process independent requests concurrently.",
+        "code": "ExecutorService executor = Executors.newFixedThreadPool(4);",
+        "interviewQuestions": [
+          {
+            "question": "Process vs thread?",
+            "answer": "A process is an independent execution environment, while a thread is a unit of execution within a process."
+          },
+          {
+            "question": "What is synchronization?",
+            "answer": "Synchronization controls concurrent access to shared resources to prevent unsafe interleavings."
+          },
+          {
+            "question": "What is ExecutorService?",
+            "answer": "ExecutorService manages task execution using a pool of threads instead of requiring manual thread management."
+          }
+        ],
+        "followUps": [
+          "What is a race condition?",
+          "What is deadlock?",
+          "synchronized vs Lock?"
+        ],
+        "quiz": [
+          {
+            "question": "Which Java API manages pools of worker threads?",
+            "answer": "ExecutorService"
+          }
+        ],
+        "visual": "Tasks ? ExecutorService ? Thread Pool ? Worker Threads"
+      },
+      "Streams": {
+        "what": "Java Streams provide a declarative way to process sequences of data.",
+        "why": "They make filtering, transformation, aggregation, and other collection-processing operations concise and composable.",
+        "how": "Create a stream, apply intermediate operations such as filter or map, and finish with a terminal operation.",
+        "example": "Filter a list of employees by salary and collect the matching names.",
+        "code": "employees.stream().filter(e -> e.getSalary() > 50000).map(Employee::getName).toList();",
+        "interviewQuestions": [
+          {
+            "question": "What is a Java Stream?",
+            "answer": "A Stream is a pipeline for processing data from a source through intermediate and terminal operations."
+          },
+          {
+            "question": "map vs filter?",
+            "answer": "map transforms each element, while filter keeps elements that satisfy a predicate."
+          },
+          {
+            "question": "Intermediate vs terminal operations?",
+            "answer": "Intermediate operations build the pipeline and are generally lazy; terminal operations trigger processing and produce a result or side effect."
+          }
+        ],
+        "followUps": [
+          "What does lazy evaluation mean?",
+          "Stream vs Collection?",
+          "When can parallel streams be harmful?"
+        ],
+        "quiz": [
+          {
+            "question": "Which operation transforms stream elements?",
+            "answer": "map"
+          }
+        ],
+        "visual": "Source ? filter ? map ? sort ? terminal operation"
+      }
+    }
+  },
+  {
+    "technology": "Python",
+    "category": "language",
+    "aliases": [
+      "python3"
+    ],
+    "fundamentals": [
+      "syntax",
+      "variables",
+      "data types",
+      "conditions",
+      "loops",
+      "functions",
+      "classes",
+      "modules"
+    ],
+    "oneLiners": [
+      "Python is a high-level interpreted language.",
+      "Lists are mutable ordered collections.",
+      "Dictionaries store key-value mappings."
+    ],
+    "modules": [
+      "OOP",
+      "collections",
+      "iterators",
+      "generators",
+      "decorators",
+      "exceptions",
+      "async programming"
+    ],
+    "libraries": [
+      "os",
+      "sys",
+      "json",
+      "datetime",
+      "collections",
+      "itertools",
+      "functools"
+    ],
+    "concepts": [
+      "mutability",
+      "iterators",
+      "generators",
+      "decorators",
+      "context managers",
+      "virtual environments"
+    ],
+    "dataStructures": [
+      "list",
+      "tuple",
+      "set",
+      "dict",
+      "deque",
+      "heap"
+    ],
+    "algorithms": [
+      "sorting",
+      "searching",
+      "BFS",
+      "DFS",
+      "dynamic programming"
+    ],
+    "codingPatterns": [
+      "list comprehension",
+      "two pointers",
+      "sliding window",
+      "hashing",
+      "recursion"
+    ],
+    "tools": [
+      "pip",
+      "venv",
+      "pytest",
+      "Jupyter"
+    ],
+    "commonMistakes": [
+      "mutable default arguments",
+      "shallow vs deep copy",
+      "scope mistakes",
+      "unhandled exceptions"
+    ],
+    "interviewTraps": [
+      "list vs tuple",
+      "is vs ==",
+      "deepcopy vs copy",
+      "generator vs list",
+      "GIL"
+    ],
+    "quickRevision": [
+      "data types",
+      "OOP",
+      "collections",
+      "generators",
+      "decorators",
+      "exceptions"
+    ],
+    "commands": [
+      "python --version",
+      "python -m venv venv",
+      "pip install package"
+    ]
+  },
+  {
+    "technology": "JavaScript",
+    "category": "language",
+    "aliases": [
+      "js",
+      "javascript"
+    ],
+    "fundamentals": [
+      "variables",
+      "types",
+      "functions",
+      "arrays",
+      "objects",
+      "conditions",
+      "loops",
+      "modules"
+    ],
+    "oneLiners": [
+      "JavaScript is a dynamic language used heavily for web development.",
+      "Promises represent eventual completion or failure of asynchronous work.",
+      "The event loop coordinates asynchronous callbacks."
+    ],
+    "modules": [
+      "DOM",
+      "events",
+      "promises",
+      "async/await",
+      "modules",
+      "closures"
+    ],
+    "libraries": [
+      "lodash",
+      "axios",
+      "date-fns"
+    ],
+    "concepts": [
+      "closures",
+      "hoisting",
+      "scope",
+      "prototype chain",
+      "this",
+      "event loop",
+      "promises",
+      "async/await"
+    ],
+    "dataStructures": [
+      "Array",
+      "Object",
+      "Map",
+      "Set",
+      "Stack",
+      "Queue"
+    ],
+    "algorithms": [
+      "searching",
+      "sorting",
+      "recursion",
+      "graph traversal"
+    ],
+    "codingPatterns": [
+      "array methods",
+      "closures",
+      "promises",
+      "event handling"
+    ],
+    "tools": [
+      "Node.js",
+      "npm",
+      "Vite",
+      "ESLint"
+    ],
+    "commonMistakes": [
+      "var scope issues",
+      "incorrect async handling",
+      "this binding mistakes",
+      "type coercion errors"
+    ],
+    "interviewTraps": [
+      "var vs let vs const",
+      "== vs ===",
+      "null vs undefined",
+      "promise vs async/await",
+      "arrow functions and this"
+    ],
+    "quickRevision": [
+      "types",
+      "closures",
+      "scope",
+      "event loop",
+      "promises",
+      "DOM"
+    ],
+    "commands": [
+      "node app.js",
+      "npm install",
+      "npm run dev"
+    ]
+  },
+  {
+    "technology": "TypeScript",
+    "category": "language",
+    "aliases": [
+      "ts"
+    ],
+    "fundamentals": [
+      "types",
+      "interfaces",
+      "functions",
+      "classes",
+      "generics",
+      "modules"
+    ],
+    "oneLiners": [
+      "TypeScript adds static type checking to JavaScript.",
+      "TypeScript is transpiled to JavaScript for execution."
+    ],
+    "modules": [
+      "type system",
+      "interfaces",
+      "generics",
+      "enums",
+      "utility types",
+      "decorators"
+    ],
+    "libraries": [
+      "TypeScript standard library",
+      "ts-node"
+    ],
+    "concepts": [
+      "structural typing",
+      "union types",
+      "intersection types",
+      "generics",
+      "type guards",
+      "utility types"
+    ],
+    "dataStructures": [
+      "Array",
+      "Map",
+      "Set",
+      "Record"
+    ],
+    "algorithms": [
+      "sorting",
+      "searching",
+      "recursion"
+    ],
+    "codingPatterns": [
+      "generic functions",
+      "type guards",
+      "interfaces"
+    ],
+    "tools": [
+      "tsc",
+      "ts-node",
+      "npm"
+    ],
+    "commonMistakes": [
+      "overusing any",
+      "incorrect narrowing",
+      "type assertion misuse"
+    ],
+    "interviewTraps": [
+      "interface vs type",
+      "any vs unknown",
+      "union vs intersection",
+      "type inference"
+    ],
+    "quickRevision": [
+      "types",
+      "interfaces",
+      "generics",
+      "narrowing",
+      "utility types"
+    ],
+    "commands": [
+      "tsc file.ts",
+      "tsc --init",
+      "tsc -w"
+    ]
+  },
+  {
+    "technology": "C#",
+    "category": "language",
+    "aliases": [
+      "csharp",
+      "dotnet csharp"
+    ],
+    "fundamentals": [
+      "syntax",
+      "types",
+      "classes",
+      "interfaces",
+      "properties",
+      "methods",
+      "exceptions"
+    ],
+    "oneLiners": [
+      "C# is a strongly typed language in the .NET ecosystem.",
+      "LINQ provides query capabilities over data collections."
+    ],
+    "modules": [
+      "OOP",
+      "LINQ",
+      "generics",
+      "async programming",
+      "exception handling"
+    ],
+    "libraries": [
+      "System",
+      "System.Collections.Generic",
+      "System.Linq",
+      "System.Threading.Tasks"
+    ],
+    "concepts": [
+      "OOP",
+      "interfaces",
+      "delegates",
+      "events",
+      "LINQ",
+      "async/await",
+      "garbage collection"
+    ],
+    "dataStructures": [
+      "List",
+      "Dictionary",
+      "HashSet",
+      "Queue",
+      "Stack"
+    ],
+    "algorithms": [
+      "sorting",
+      "searching",
+      "BFS",
+      "DFS"
+    ],
+    "codingPatterns": [
+      "LINQ",
+      "async/await",
+      "generics"
+    ],
+    "tools": [
+      "dotnet CLI",
+      "Visual Studio",
+      "NuGet"
+    ],
+    "commonMistakes": [
+      "null handling",
+      "blocking async code",
+      "incorrect LINQ usage"
+    ],
+    "interviewTraps": [
+      "class vs struct",
+      "interface vs abstract class",
+      "IEnumerable vs IQueryable",
+      "async vs sync"
+    ],
+    "quickRevision": [
+      "OOP",
+      "LINQ",
+      "generics",
+      "async/await",
+      "collections"
+    ],
+    "commands": [
+      "dotnet new console",
+      "dotnet build",
+      "dotnet run"
+    ]
+  },
+  {
+    "technology": "Go",
+    "category": "language",
+    "aliases": [
+      "golang"
+    ],
+    "fundamentals": [
+      "packages",
+      "variables",
+      "functions",
+      "structs",
+      "interfaces",
+      "pointers",
+      "goroutines"
+    ],
+    "oneLiners": [
+      "Go is a statically typed compiled language.",
+      "Goroutines provide lightweight concurrent execution.",
+      "Channels enable communication between goroutines."
+    ],
+    "modules": [
+      "interfaces",
+      "goroutines",
+      "channels",
+      "error handling",
+      "modules"
+    ],
+    "libraries": [
+      "fmt",
+      "net/http",
+      "encoding/json",
+      "sync",
+      "context"
+    ],
+    "concepts": [
+      "goroutines",
+      "channels",
+      "interfaces",
+      "slices",
+      "maps",
+      "error handling"
+    ],
+    "dataStructures": [
+      "arrays",
+      "slices",
+      "maps",
+      "structs"
+    ],
+    "algorithms": [
+      "sorting",
+      "searching",
+      "graph traversal"
+    ],
+    "codingPatterns": [
+      "concurrency",
+      "worker pools",
+      "pipelines"
+    ],
+    "tools": [
+      "go CLI",
+      "gofmt",
+      "go test"
+    ],
+    "commonMistakes": [
+      "goroutine leaks",
+      "nil interface confusion",
+      "race conditions"
+    ],
+    "interviewTraps": [
+      "slice vs array",
+      "goroutine vs thread",
+      "interface nil behavior",
+      "channels"
+    ],
+    "quickRevision": [
+      "goroutines",
+      "channels",
+      "interfaces",
+      "slices",
+      "maps"
+    ],
+    "commands": [
+      "go run main.go",
+      "go build",
+      "go test ./..."
+    ]
+  }
+]

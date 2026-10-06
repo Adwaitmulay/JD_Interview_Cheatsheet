@@ -1,0 +1,38 @@
+﻿[
+  {
+    "technology": "SQL",
+    "category": "database",
+    "aliases": ["sql", "structured query language"],
+    "fundamentals": ["SELECT", "INSERT", "UPDATE", "DELETE", "WHERE", "GROUP BY", "ORDER BY"],
+    "oneLiners": ["SQL is used to query and manipulate relational data.", "A JOIN combines related rows from tables."],
+    "modules": ["queries", "joins", "aggregation", "subqueries", "transactions", "indexes"],
+    "libraries": [],
+    "concepts": ["normalization", "indexes", "transactions", "ACID", "constraints", "views", "stored procedures"],
+    "dataStructures": ["tables", "indexes", "B-tree indexes"],
+    "algorithms": ["query planning", "join strategies", "index lookup"],
+    "codingPatterns": ["joins", "subqueries", "CTEs", "window functions"],
+    "tools": ["MySQL", "PostgreSQL", "SQL Server", "Oracle"],
+    "commonMistakes": ["missing WHERE", "unnecessary SELECT *", "poor indexing", "incorrect joins"],
+    "interviewTraps": ["WHERE vs HAVING", "DELETE vs TRUNCATE", "UNION vs UNION ALL", "INNER vs LEFT JOIN"],
+    "quickRevision": ["joins", "indexes", "normalization", "transactions", "GROUP BY", "window functions"],
+    "commands": []
+  },
+  {
+    "technology": "MongoDB",
+    "category": "database",
+    "aliases": ["mongo", "mongodb"],
+    "fundamentals": ["documents", "collections", "CRUD", "queries", "indexes"],
+    "oneLiners": ["MongoDB is a document-oriented NoSQL database.", "Documents are stored in BSON format."],
+    "modules": ["CRUD", "aggregation", "indexes", "replication", "transactions"],
+    "libraries": ["MongoDB Driver", "Mongoose"],
+    "concepts": ["document model", "embedding", "referencing", "indexes", "aggregation pipeline", "replica sets"],
+    "dataStructures": ["documents", "arrays", "embedded documents"],
+    "algorithms": ["aggregation", "index lookup"],
+    "codingPatterns": ["schema design", "aggregation pipelines"],
+    "tools": ["mongosh", "MongoDB Compass"],
+    "commonMistakes": ["poor schema design", "missing indexes", "unbounded arrays"],
+    "interviewTraps": ["embedding vs referencing", "SQL vs MongoDB", "indexes", "transactions"],
+    "quickRevision": ["documents", "CRUD", "indexes", "aggregation", "schema design"],
+    "commands": ["mongosh", "show dbs", "show collections"]
+  }
+]

@@ -1,0 +1,20 @@
+﻿[
+  {
+    "technology": "FastAPI",
+    "category": "web",
+    "aliases": ["fast api"],
+    "fundamentals": ["routing", "path parameters", "query parameters", "request bodies", "Pydantic", "dependency injection"],
+    "oneLiners": ["FastAPI is a modern Python framework for building APIs.", "Pydantic validates request and response data."],
+    "modules": ["FastAPI", "Pydantic", "APIRouter", "Depends"],
+    "libraries": ["Uvicorn", "Pydantic", "SQLAlchemy", "httpx"],
+    "concepts": ["async endpoints", "dependency injection", "validation", "middleware", "OpenAPI", "authentication"],
+    "dataStructures": ["dict", "list", "Pydantic models"],
+    "algorithms": ["request routing", "validation", "serialization"],
+    "codingPatterns": ["router-service-repository", "dependency injection", "CRUD APIs"],
+    "tools": ["Uvicorn", "Swagger UI", "Postman"],
+    "commonMistakes": ["blocking async endpoints", "missing validation", "poor exception handling"],
+    "interviewTraps": ["FastAPI vs Flask", "async vs sync", "Depends", "Pydantic"],
+    "quickRevision": ["routes", "Pydantic", "Depends", "async", "middleware", "OpenAPI"],
+    "commands": ["uvicorn main:app --reload", "pip install fastapi uvicorn", "pip freeze"]
+  }
+]

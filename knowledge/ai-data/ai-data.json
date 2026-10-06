@@ -1,0 +1,20 @@
+﻿[
+  {
+    "technology": "Machine Learning",
+    "category": "ai-data",
+    "aliases": ["ml", "machine learning"],
+    "fundamentals": ["supervised learning", "unsupervised learning", "features", "labels", "training", "validation", "testing"],
+    "oneLiners": ["Machine learning learns patterns from data to make predictions or decisions.", "Overfitting occurs when a model fits training data too closely and generalizes poorly."],
+    "modules": ["regression", "classification", "clustering", "feature engineering", "model evaluation"],
+    "libraries": ["scikit-learn", "NumPy", "pandas"],
+    "concepts": ["bias variance", "overfitting", "underfitting", "cross validation", "regularization", "feature scaling"],
+    "dataStructures": ["arrays", "dataframes", "tensors"],
+    "algorithms": ["linear regression", "logistic regression", "decision trees", "random forest", "k-means", "gradient descent"],
+    "codingPatterns": ["train-test split", "pipeline", "cross validation"],
+    "tools": ["Jupyter", "MLflow"],
+    "commonMistakes": ["data leakage", "wrong evaluation metric", "training-test contamination"],
+    "interviewTraps": ["precision vs recall", "bagging vs boosting", "classification vs regression", "overfitting vs underfitting"],
+    "quickRevision": ["supervised learning", "evaluation metrics", "overfitting", "regularization", "feature engineering"],
+    "commands": []
+  }
+]

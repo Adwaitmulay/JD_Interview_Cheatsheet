@@ -1,0 +1,38 @@
+﻿[
+  {
+    "technology": "NumPy",
+    "category": "ai-data",
+    "aliases": ["numpy", "np"],
+    "fundamentals": ["arrays", "shape", "dtype", "indexing", "slicing", "vectorization"],
+    "oneLiners": ["NumPy provides efficient numerical arrays and vectorized operations in Python."],
+    "modules": ["numpy", "random", "linalg"],
+    "libraries": ["NumPy"],
+    "concepts": ["ndarray", "broadcasting", "vectorization", "matrix operations"],
+    "dataStructures": ["ndarray", "matrices"],
+    "algorithms": ["linear algebra", "array operations"],
+    "codingPatterns": ["vectorized computation", "array slicing"],
+    "tools": ["Jupyter", "Python"],
+    "commonMistakes": ["shape mismatch", "unnecessary Python loops", "dtype issues"],
+    "interviewTraps": ["list vs ndarray", "broadcasting", "copy vs view"],
+    "quickRevision": ["ndarray", "shape", "dtype", "broadcasting", "vectorization"],
+    "commands": ["pip install numpy", "import numpy as np"]
+  },
+  {
+    "technology": "Pandas",
+    "category": "ai-data",
+    "aliases": ["pandas", "pd"],
+    "fundamentals": ["Series", "DataFrame", "indexing", "filtering", "groupby", "missing values"],
+    "oneLiners": ["Pandas provides data structures and tools for data analysis in Python."],
+    "modules": ["pandas", "read_csv", "groupby", "merge"],
+    "libraries": ["Pandas"],
+    "concepts": ["DataFrame", "Series", "groupby", "merge", "aggregation", "missing data"],
+    "dataStructures": ["DataFrame", "Series"],
+    "algorithms": ["grouping", "aggregation", "sorting", "joining"],
+    "codingPatterns": ["ETL", "data cleaning", "feature preparation"],
+    "tools": ["Jupyter", "Python"],
+    "commonMistakes": ["chained assignment", "wrong merge", "ignoring missing values"],
+    "interviewTraps": ["loc vs iloc", "merge vs concat", "apply vs vectorization"],
+    "quickRevision": ["DataFrame", "Series", "loc", "iloc", "groupby", "merge"],
+    "commands": ["pip install pandas", "import pandas as pd"]
+  }
+]

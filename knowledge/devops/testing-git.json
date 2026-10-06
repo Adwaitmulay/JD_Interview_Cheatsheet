@@ -1,0 +1,38 @@
+﻿[
+  {
+    "technology": "Git",
+    "category": "devops",
+    "aliases": ["git", "github", "version control"],
+    "fundamentals": ["repository", "commit", "branch", "merge", "remote", "pull request"],
+    "oneLiners": ["Git is a distributed version control system."],
+    "modules": ["branching", "merging", "stashing", "rebasing"],
+    "libraries": [],
+    "concepts": ["branching", "merge conflicts", "rebase", "remote tracking"],
+    "dataStructures": ["commit graph"],
+    "algorithms": ["three-way merge", "history traversal"],
+    "codingPatterns": ["feature branches", "pull requests", "release branches"],
+    "tools": ["GitHub", "Git Bash", "GitHub Actions"],
+    "commonMistakes": ["committing secrets", "force pushing shared branches", "large binary files"],
+    "interviewTraps": ["merge vs rebase", "reset vs revert", "fetch vs pull"],
+    "quickRevision": ["clone", "add", "commit", "push", "pull", "branch", "merge"],
+    "commands": ["git clone URL", "git status", "git add .", "git commit -m \"message\"", "git push", "git pull"]
+  },
+  {
+    "technology": "Unit Testing",
+    "category": "devops",
+    "aliases": ["unit test", "unit testing", "testing", "pytest", "unittest"],
+    "fundamentals": ["test cases", "assertions", "fixtures", "mocking", "test isolation"],
+    "oneLiners": ["Unit tests verify small pieces of application logic independently."],
+    "modules": ["pytest", "unittest", "mock"],
+    "libraries": ["pytest", "unittest.mock"],
+    "concepts": ["AAA pattern", "mocking", "fixtures", "test isolation", "coverage"],
+    "dataStructures": ["test suites", "test cases"],
+    "algorithms": ["test execution", "assertion evaluation"],
+    "codingPatterns": ["Arrange Act Assert", "test doubles", "parameterized tests"],
+    "tools": ["pytest", "coverage.py"],
+    "commonMistakes": ["testing implementation instead of behavior", "shared test state", "weak assertions"],
+    "interviewTraps": ["unit vs integration testing", "mock vs stub", "test coverage"],
+    "quickRevision": ["assertions", "fixtures", "mocking", "coverage", "AAA"],
+    "commands": ["pytest", "pytest -v", "pytest --cov"]
+  }
+]

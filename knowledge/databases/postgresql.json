@@ -1,0 +1,20 @@
+﻿[
+  {
+    "technology": "PostgreSQL",
+    "category": "database",
+    "aliases": ["postgres", "postgresql", "postgres sql"],
+    "fundamentals": ["tables", "primary keys", "foreign keys", "constraints", "indexes", "transactions"],
+    "oneLiners": ["PostgreSQL is an open-source relational database.", "Indexes improve lookup performance but add storage and write overhead."],
+    "modules": ["SQL", "PL/pgSQL", "JSONB", "extensions"],
+    "libraries": ["psycopg", "SQLAlchemy", "asyncpg"],
+    "concepts": ["joins", "transactions", "ACID", "indexes", "normalization", "MVCC"],
+    "dataStructures": ["tables", "B-tree indexes", "JSONB"],
+    "algorithms": ["query planning", "index scanning", "join processing"],
+    "codingPatterns": ["CRUD", "transactions", "parameterized queries"],
+    "tools": ["psql", "pgAdmin", "EXPLAIN"],
+    "commonMistakes": ["missing indexes", "SQL injection", "N+1 queries"],
+    "interviewTraps": ["WHERE vs HAVING", "DELETE vs TRUNCATE", "index trade-offs", "transactions"],
+    "quickRevision": ["joins", "indexes", "ACID", "transactions", "normalization", "EXPLAIN"],
+    "commands": ["psql -U postgres", "CREATE DATABASE appdb;", "EXPLAIN ANALYZE SELECT ...;"]
+  }
+]
