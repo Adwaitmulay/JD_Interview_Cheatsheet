@@ -130,6 +130,11 @@ function buildCheatsheet(analysis) {
     );
 
     return {
+        role: analysis.role || "Technical Role",
+        summary: analysis.summary || `${analysis.experience || "fresher"} level technical interview preparation`,
+        keySkills: analysis.keySkills || orderedSkills.map(s => s.technology),
+        responsibilities: analysis.responsibilities || [],
+        requirements: analysis.requirements || [],
         experience: analysis.experience,
 
         skills: orderedSkills
