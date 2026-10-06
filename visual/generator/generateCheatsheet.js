@@ -44,7 +44,7 @@ function skill(skill) {
     <section>
         <div class="skillHead">
             <strong>${esc(skill.technology)}</strong>
-            <small>${esc(skill.experienceLevel)} · ${esc(skill.focus)}</small>
+            <small>${esc(skill.experienceLevel)} Â· ${esc(skill.focus)}</small>
         </div>
 
         <div class="cols">
@@ -238,7 +238,7 @@ code{
 <div class="page">
 <div class="header">
 <h1>TECHNICAL INTERVIEW CHEAT SHEET</h1>
-<p>JD-driven · ${esc(cheatsheet.experience || "fresher")} level · ${skills.length} technologies · rapid interview revision</p>
+<p>JD-driven Â· ${esc(cheatsheet.experience || "fresher")} level Â· ${skills.length} technologies Â· rapid interview revision</p>
 </div>
 ${skills.map(skill).join("")}
 <div class="footer">Automatically generated from Job Description</div>
@@ -247,16 +247,37 @@ ${skills.map(skill).join("")}
 </html>`;
 
     const browser = await chromium.launch({headless:true});
-    const page = await browser.newPage({
-        viewport:{width:794,height:1123},
-        deviceScaleFactor:2
-    });
 
-    await page.setContent(html,{waitUntil:"networkidle"});
-    await page.screenshot({path:outputFile,fullPage:true});
-    await browser.close();
+    try {
+        const page = await browser.newPage({
+            viewport:{width:794,height:1123},
+            deviceScaleFactor:2
+        });
 
-    console.log("Generated:",outputFile);
+        page.setDefaultTimeout(120000);
+
+        await page.setContent(html,{
+            waitUntil:"domcontentloaded",
+            timeout:120000
+        });
+
+        await page.evaluate(async () => {
+            if (document.fonts?.ready) {
+                await document.fonts.ready;
+            }
+        });
+
+        await page.screenshot({
+            path:outputFile,
+            fullPage:true,
+            timeout:120000,
+            animations:"disabled"
+        });
+
+        console.log("Generated:",outputFile);
+    } finally {
+        await browser.close();
+    }
 }
 
 module.exports={generate};
