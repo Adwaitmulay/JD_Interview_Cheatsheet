@@ -71,13 +71,13 @@ function buildVisuals(cheatsheet) {
   return [...new Set(visuals)].slice(0,3);
 }
 
-function renderVisuals(cheatsheet, width=744) {
+function renderVisuals(cheatsheet, width=744, xOffset=0) {
   const selected=buildVisuals(cheatsheet);
   const gap=6;
   const count=selected.length || 1;
   const panelW=(width-gap*(count-1))/count;
   const chunks=selected.map((type,i)=>{
-    const x=i*(panelW+gap);
+    const x=xOffset+i*(panelW+gap);
     if(type==="binary") return binaryPanel(x,panelW);
     if(type==="devops") return devopsPanel(x,panelW);
     return architecturePanel(x,panelW,arr(cheatsheet.skills));
