@@ -48,12 +48,12 @@ function compactSkill(skill) {
 
 async function generate(cheatsheet, outputFile) {
   const skills = arr(cheatsheet.skills).slice(0,6);
-  const visualWidth = localImage ? 618 : 744;
-  const visualOffset = localImage ? 126 : 0;
-  const visual = renderVisuals(cheatsheet, visualWidth, visualOffset);
   const localImage = cheatsheet.localVisualPath && fs.existsSync(cheatsheet.localVisualPath)
     ? `data:image/png;base64,${fs.readFileSync(cheatsheet.localVisualPath).toString("base64")}`
     : null;
+  const visualWidth = localImage ? 618 : 744;
+  const visualOffset = localImage ? 126 : 0;
+  const visual = renderVisuals(cheatsheet, visualWidth, visualOffset);
 
   const html = `<!doctype html>
 <html><head><meta charset="utf-8"><style>
