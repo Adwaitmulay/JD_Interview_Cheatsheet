@@ -48,7 +48,9 @@ function compactSkill(skill) {
 
 async function generate(cheatsheet, outputFile) {
   const skills = arr(cheatsheet.skills).slice(0,6);
-  const visual = renderVisuals(cheatsheet, 744);
+  const visualWidth = localImage ? 618 : 744;
+  const visualOffset = localImage ? 126 : 0;
+  const visual = renderVisuals(cheatsheet, visualWidth, visualOffset);
   const localImage = cheatsheet.localVisualPath && fs.existsSync(cheatsheet.localVisualPath)
     ? `data:image/png;base64,${fs.readFileSync(cheatsheet.localVisualPath).toString("base64")}`
     : null;
@@ -83,10 +85,10 @@ code{display:block;background:#f1f1f1;padding:4px;font-family:Consolas,monospace
 </style></head>
 <body><div class="page">
 <div class="header"><h1>TECHNICAL INTERVIEW CHEAT SHEET</h1>
-<p>${esc(cheatsheet.role || "Technical Role")} · ${esc(cheatsheet.experience || "fresher")} · JD-driven · Top ${skills.length} technologies</p></div>
+<p>${esc(cheatsheet.role || "Technical Role")} · ${esc(cheatsheet.experience || "fresher")} · JD-driven · ${skills.length} technologies · A4 PNG</p></div>
 <div class="visual"><svg viewBox="0 0 744 134" preserveAspectRatio="none">
 <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#111"/></marker></defs>
-${localImage ? `<image href="${localImage}" x="0" y="0" width="170" height="134" preserveAspectRatio="xMidYMid slice" opacity="0.9"/>` : ""}${visual.svg}</svg></div>
+${localImage ? `<rect x="0" y="0" width="120" height="134" rx="9" fill="#f3f3f3" stroke="#111"/><image href="${localImage}" x="3" y="3" width="114" height="128" preserveAspectRatio="xMidYMid slice" opacity="0.96"/><text x="60" y="127" text-anchor="middle" font-size="6" font-weight="700">LOCAL AI VISUAL</text>` : ""}${visual.svg}</svg></div>
 <div class="skillsGrid">${skills.map(compactSkill).join("")}</div>
 <div class="footer">Generated locally from the Job Description · no external image-generation API</div>
 </div></body></html>`;
