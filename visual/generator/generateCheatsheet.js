@@ -69,16 +69,16 @@ html,body{margin:0;width:794px;height:1123px;background:#fff;color:#111;font-fam
 .header p{margin:3px 0 0;font-size:7px;color:#555}
 .visual{height:126px;margin-bottom:5px;overflow:hidden;border-radius:10px}
 .visual svg{width:100%;height:126px;display:block}
-.skill{margin-bottom:4px;break-inside:avoid}
-.skillHead{height:22px;background:#111;color:#fff;padding:5px 7px;display:flex;justify-content:space-between;align-items:center}
-.skillHead b{font-size:10px}.skillHead span{font-size:6.5px;color:#ddd}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px}
-article{border:1px solid #bbb;padding:4px;min-height:40px;overflow:hidden}
-article.wide{grid-column:span 3;min-height:28px}
-h3{font-size:6px;margin:0 0 3px;letter-spacing:.5px;border-bottom:1px solid #ddd;padding-bottom:2px}
-ul,ol{margin:0;padding-left:11px;font-size:6.2px;line-height:1.18}
-li{margin:0 0 1px}p{margin:0;font-size:6.2px;line-height:1.22;word-break:break-word}
-code{display:block;background:#f2f2f2;padding:3px;font-family:Consolas,monospace;font-size:5.3px;line-height:1.15;white-space:pre-wrap;max-height:25px;overflow:hidden}
+.skill{margin-bottom:3px;break-inside:avoid}
+.skillHead{height:19px;background:#111;color:#fff;padding:5px 7px;display:flex;justify-content:space-between;align-items:center}
+.skillHead b{font-size:9px}.skillHead span{font-size:6.5px;color:#ddd}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:2px}
+article{border:1px solid #bbb;padding:3px;min-height:35px;overflow:hidden}
+article.wide{grid-column:span 3;min-height:24px}
+h3{font-size:5.8px;margin:0 0 3px;letter-spacing:.5px;border-bottom:1px solid #ddd;padding-bottom:2px}
+ul,ol{margin:0;padding-left:10px;font-size:5.8px;line-height:1.18}
+li{margin:0 0 1px}p{margin:0;font-size:5.8px;line-height:1.22;word-break:break-word}
+code{display:block;background:#f2f2f2;padding:3px;font-family:Consolas,monospace;font-size:5px;line-height:1.1;white-space:pre-wrap;max-height:22px;overflow:hidden}
 .footer{text-align:center;font-size:5.5px;color:#777;margin-top:2px}
 </style></head>
 <body><div class="page">
