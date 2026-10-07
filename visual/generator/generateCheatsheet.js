@@ -53,7 +53,10 @@ function compactSkill(skill) {
 
 async function generate(cheatsheet, outputFile) {
   const skills = arr(cheatsheet.skills).slice(0,6);
-  const visual = renderVisuals(cheatsheet, 744);\n  const localImage = cheatsheet.localVisualPath && fs.existsSync(cheatsheet.localVisualPath)\n    ? `data:image/png;base64,${fs.readFileSync(cheatsheet.localVisualPath).toString("base64")}`\n    : null;
+  const visual = renderVisuals(cheatsheet, 744);
+  const localImage = cheatsheet.localVisualPath && fs.existsSync(cheatsheet.localVisualPath)
+    ? `data:image/png;base64,${fs.readFileSync(cheatsheet.localVisualPath).toString("base64")}`
+    : null;
 
   const html = `<!doctype html>
 <html><head><meta charset="utf-8"><style>
@@ -83,7 +86,7 @@ code{display:block;background:#f2f2f2;padding:3px;font-family:Consolas,monospace
 <p>${esc(cheatsheet.role || "Technical Role")} · ${esc(cheatsheet.experience || "fresher")} · JD-driven · Top ${skills.length} technologies</p></div>
 <div class="visual"><svg viewBox="0 0 744 150" preserveAspectRatio="xMidYMid meet">
 <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#111"/></marker></defs>
-${visual.svg}</svg></div>
+${localImage ? `<image href="${localImage}" x="0" y="0" width="190" height="126" preserveAspectRatio="xMidYMid slice" opacity="0.92"/>` : ""}${visual.svg}</svg></div>
 ${skills.map(compactSkill).join("")}
 <div class="footer">Generated locally from the Job Description · no external image-generation API</div>
 </div></body></html>`;
