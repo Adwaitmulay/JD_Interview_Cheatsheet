@@ -1,4 +1,5 @@
 const { chromium } = require("playwright");
+const fs = require("fs");
 const { renderVisuals } = require("./visualEngine");
 
 const esc = (v="") => String(v)
@@ -52,7 +53,7 @@ function compactSkill(skill) {
 
 async function generate(cheatsheet, outputFile) {
   const skills = arr(cheatsheet.skills).slice(0,6);
-  const visual = renderVisuals(cheatsheet, 744);
+  const visual = renderVisuals(cheatsheet, 744);\n  const localImage = cheatsheet.localVisualPath && fs.existsSync(cheatsheet.localVisualPath)\n    ? `data:image/png;base64,${fs.readFileSync(cheatsheet.localVisualPath).toString("base64")}`\n    : null;
 
   const html = `<!doctype html>
 <html><head><meta charset="utf-8"><style>
