@@ -35,13 +35,14 @@ function runLocalImageEngine(cheatsheet, outputFile) {
             script,
             "--prompt", prompt,
             "--output", outputFile,
-            "--steps", process.env.LOCAL_IMAGE_STEPS || "12",
+            "--model", process.env.LOCAL_IMAGE_MODEL || "stabilityai/sd-turbo",
+            "--steps", process.env.LOCAL_IMAGE_STEPS || "4",
             "--width", "384",
             "--height", "384"
         ];
 
         execFile(python, args, {
-            timeout: 105000,
+            timeout: 115000,
             maxBuffer: 2 * 1024 * 1024
         }, (error) => {
             if (error) return reject(error);
