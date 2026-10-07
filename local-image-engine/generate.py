@@ -8,28 +8,32 @@ PROMPT_PREFIX = (
     "clear visual hierarchy, no decorative branding, no logo, no watermark"
 )
 
+DEFAULT_MODEL = os.getenv("LOCAL_IMAGE_MODEL", "stabilityai/sd-turbo")
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--prompt", required=True)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--model", default=os.getenv("LOCAL_IMAGE_MODEL", "runwayml/stable-diffusion-v1-5"))
-    parser.add_argument("--steps", type=int, default=12)
+    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--steps", type=int, default=4)
     parser.add_argument("--width", type=int, default=384)
     parser.add_argument("--height", type=int, default=384)
     args = parser.parse_args()
 
     try:
         import torch
-        from diffusers import StableDiffusionPipeline
+        from diffusers import AutoPipelineForText2Image
     except ImportError as exc:
         raise SystemExit(
-            "Local engine dependencies missing. Install torch and diffusers locally; "
-            "the main web service does not require a remote image API."
+            "Local engine dependencies missing. Install the local requirements first. "
+            "No remote image API is used."
         ) from exc
 
-    pipe = StableDiffusionPipeline.from_pretrained(
+    dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+
+    pipe = AutoPipelineForText2Image.from_pretrained(
         args.model,
-        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32
+        torch_dtype=dtype
     )
 
     if torch.cuda.is_available():
@@ -39,11 +43,11 @@ def main():
         pipe = pipe.to("cpu")
 
     prompt = f"{PROMPT_PREFIX}, {args.prompt}"
+
     image = pipe(
         prompt=prompt,
-        negative_prompt="text errors, unreadable text, watermark, logo, clutter, photorealistic",
-        num_inference_steps=args.steps,
-        guidance_scale=5.5,
+        num_inference_steps=max(1, args.steps),
+        guidance_scale=0.0,
         width=args.width,
         height=args.height
     ).images[0]
