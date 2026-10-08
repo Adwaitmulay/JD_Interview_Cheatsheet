@@ -1,12 +1,12 @@
 @echo off
 setlocal
 
-set "ROOT=%~dp0"
-set "PY=%ROOT%sdxs-env\Scripts\python.exe"
+set "PY=%~dp0sdxs-env\Scripts\python.exe"
+set "TEST=%~dp0test_sdxs.py"
 
 if not exist "%PY%" (
   echo Creating clean SDXS environment...
-  D:\Miniconda3\envs\pasta\python.exe -m venv "%ROOT%sdxs-env"
+  D:\Miniconda3\envs\pasta\python.exe -m venv "%~dp0sdxs-env"
   if errorlevel 1 exit /b 1
 )
 
@@ -23,5 +23,5 @@ echo Verifying CUDA...
 if errorlevel 1 exit /b 1
 
 echo Running SDXS-512 test...
-"%PY%" "%ROOT%local-image-engine\test_sdxs.py"
+"%PY%" "%TEST%"
 exit /b %errorlevel%
