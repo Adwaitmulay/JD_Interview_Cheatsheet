@@ -8,10 +8,13 @@ const esc = (v="") => String(v)
 
 const arr = v => Array.isArray(v) ? v : [];
 
+function itemText(x) {
+  if (typeof x === "string") return x;
+  if (!x || typeof x !== "object") return String(x ?? "");
+  return x.topic || x.name || x.title || x.question || x.what || x.description || "";
+}
 function list(items=[], n=4) {
-  return arr(items).slice(0,n).map(x =>
-    `<li>${esc(typeof x === "string" ? x : x.question || x.topic || JSON.stringify(x))}</li>`
-  ).join("");
+  return arr(items).slice(0,n).map(x => `<li>${esc(itemText(x))}</li>`).join("");
 }
 
 function codeOf(skill) {
@@ -43,8 +46,8 @@ function codeOf(skill) {
 function uniqueItems(items) {
   const seen = new Set();
   return arr(items).filter(item => {
-    const text = String(typeof item === "string" ? item : item?.topic || item?.question || "").trim();
-    const key = text.toLowerCase();
+    const text = String(itemText(item)).trim();
+    const key = text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
     if (!key || seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -60,9 +63,10 @@ function compactSkill(skill) {
   ]).slice(0, 8);
 
   const core = uniqueItems([...arr(skill.priorityTopics), ...arr(skill.fundamentals)]).slice(0, 5);
-  const concepts = uniqueItems([...arr(skill.concepts), ...arr(skill.dataStructures), ...arr(skill.algorithms)]).filter(item =>
-    !core.some(topic => String(topic).toLowerCase() === String(item).toLowerCase())
-  ).slice(0, 6);
+  const coreKeys = new Set(core.map(x => itemText(x).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()));
+  const concepts = uniqueItems([...arr(skill.concepts), ...arr(skill.dataStructures), ...arr(skill.algorithms)])
+    .filter(item => !coreKeys.has(itemText(item).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()))
+    .slice(0, 6);
   const questions = uniqueItems(skill.interviewQuestions).slice(0, 4);
   const revision = uniqueItems(skill.quickRevision).slice(0, 6);
 
@@ -84,7 +88,19 @@ function compactSkill(skill) {
 }
 
 async function generate(cheatsheet, outputFile) {
-  const skills = arr(cheatsheet.skills).slice(0,6);
+  const priority = name => {
+    const n = String(name || "").toLowerCase();
+    if (n === "python") return 1;
+    if (n.includes("fastapi")) return 2;
+    if (n.includes("sqlalchemy")) return 3;
+    if (n.includes("postgres")) return 4;
+    if (n.includes("docker")) return 5;
+    if (n === "aws" || n.includes("amazon web services")) return 6;
+    if (n === "sql") return 20;
+    if (n === "git") return 21;
+    return 10;
+  };
+  const skills = arr(cheatsheet.skills).slice().sort((a,b) => priority(a.technology)-priority(b.technology)).slice(0,6);
   const localImage = cheatsheet.localVisualPath && fs.existsSync(cheatsheet.localVisualPath)
     ? `data:image/png;base64,${fs.readFileSync(cheatsheet.localVisualPath).toString("base64")}`
     : null;
