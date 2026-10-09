@@ -16,26 +16,29 @@ function list(items=[], n=4) {
 
 function codeOf(skill) {
   const name = String(skill.technology || "").toLowerCase().trim();
-  const examples = [
-    { test: n => n === "sql" || n.includes("postgres") || n.includes("mysql") || n.includes("database"), code: "SELECT department, COUNT(*) AS total\nFROM employees\nGROUP BY department\nORDER BY total DESC;" },
-    { test: n => n.includes("spring boot"), code: "@RestController\n@GetMapping(\"/health\")\nString health() { return \"ok\"; }" },
-    { test: n => n === "java" || n.includes("java "), code: "Map<String, Integer> counts = new HashMap<>();\ncounts.merge(key, 1, Integer::sum);" },
-    { test: n => n.includes("python"), code: "from collections import Counter\ncounts = Counter(items)\nprint(counts.most_common(3))" },
-    { test: n => n.includes("javascript") || n === "node" || n.includes("node.js"), code: "const counts = items.reduce((m, x) =>\n  m.set(x, (m.get(x) || 0) + 1), new Map());" },
-    { test: n => n.includes("docker"), code: "docker build -t app .\ndocker run --rm -p 8080:8080 app" },
-    { test: n => n === "git" || n.startsWith("git "), code: "git switch -c feature/name\ngit add . && git commit -m \"feat: change\"" },
-    { test: n => n.includes("aws") || n.includes("cloud"), code: "aws sts get-caller-identity\naws s3 ls" },
-    { test: n => n.includes("html") || n.includes("css"), code: "<main class=\"container\">\n  <h1>Accessible UI</h1>\n</main>" },
-    { test: n => n === "c++" || n.includes("cpp"), code: "std::unordered_map<std::string, int> freq;\nfor (const auto& x : items) ++freq[x];" }
-  ];
-  const match = examples.find(item => item.test(name));
-  if (match) return match.code;
-
-  const topic = arr(skill.topics).find(t => t.code && !/^(SQL is used to query and manipulate relational data\.?|Explain the definition)/i.test(String(t.code).trim()));
+  const snippets = {
+    "sql": "SELECT department, COUNT(*) AS total\\nFROM employees\\nGROUP BY department\\nORDER BY total DESC;",
+    "postgresql": "CREATE INDEX idx_users_email ON users(email);\\nSELECT id, email FROM users WHERE email = $1;",
+    "sqlalchemy": "stmt = select(User).where(User.email == email)\\nuser = session.scalar(stmt)",
+    "python": "from collections import Counter\\ncounts = Counter(items)\\nprint(counts.most_common(3))",
+    "fastapi": "from fastapi import FastAPI\\napp = FastAPI()\\n@app.get(\\"/health\\")\\ndef health(): return {\\"status\\": \\"ok\\"}",
+    "docker": "docker build -t api .\\ndocker run --rm -p 8000:8000 api",
+    "git": "git switch -c feature/api\\ngit add . && git commit -m \\"feat: add API\\"",
+    "aws": "aws sts get-caller-identity\\naws s3 ls",
+    "spring boot": "@RestController\\n@GetMapping(\\"/health\\")\\nString health() { return \\"ok\\"; }",
+    "java": "Map<String, Integer> counts = new HashMap<>();\\ncounts.merge(key, 1, Integer::sum);",
+    "javascript": "const counts = items.reduce((m, x) =>\\n  m.set(x, (m.get(x) || 0) + 1), new Map());"
+  };
+  for (const [key, snippet] of Object.entries(snippets)) {
+    if (name === key || name.includes(key)) return snippet;
+  }
+  const topic = arr(skill.topics).find(t => t.code && !/^(SQL is used to query and manipulate relational data\\.?|Explain the definition)/i.test(String(t.code).trim()));
   if (topic?.code) return topic.code;
-  const detailed = arr(skill.sections).find(s => s.code);
-  if (detailed?.code) return detailed.code;
-  return arr(skill.commands)[0] || arr(skill.oneLiners)[0] || "Review the key API, one common operation, and its failure case.";
+  const command = arr(skill.commands).find(x => typeof x === "string" && x.trim());
+  if (command) return command;
+  const oneLiner = arr(skill.oneLiners).find(x => typeof x === "string" && x.trim() && !/^SQL is used to query/i.test(x));
+  if (oneLiner) return oneLiner;
+  return "Add a technology-specific code example to the knowledge base.";
 }
 function uniqueItems(items) {
   const seen = new Set();
