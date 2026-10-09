@@ -1,34 +1,32 @@
 # Local Image Engine
 
-This component is optional and local-only.
+Optional local-only experiment. The main cheatsheet does not require a diffusion model.
 
 ## Hard rules
 
-- No GPT or ChatGPT image generation.
-- No OpenAI image-generation API.
-- No paid or hosted image-generation service.
-- Exact technical diagrams, labels, arrows, algorithms and code remain deterministic SVG/Canvas.
-- The diffusion model may create only supplementary imagery; do not trust it to render exact text or technical notation.
+- No GPT/ChatGPT image generation, OpenAI image-generation API, or paid/hosted image service.
+- Exact technical diagrams, labels, arrows, algorithms, and code remain deterministic SVG.
+- Diffusion output is supplementary only; never trust it for exact technical text.
 
-## Model choice and test status
+## Current status
 
-The selected model is `stabilityai/sd-turbo`. The model loaded and generated a 384x384 test PNG in about 5 seconds after loading. The first load took about 15 minutes in the reported test. A NumPy invalid-cast warning appeared, so inspect `local-image-engine\sd_turbo_test.png` before accepting visual quality. End-to-end A4 output with SD-Turbo is not yet verified.
+**SD-Turbo is not usable yet.** The test output was a 384x384 all-black image (pixel min=0, max=0, one unique color) and emitted an invalid-cast warning. Do not enable `LOCAL_IMAGE_ENGINE=1` until a valid image is confirmed.
 
-## Local setup (Windows + NVIDIA)
+The first model load was about 15 minutes; cached loading later took about 5 seconds, with image generation around 5 seconds. Since the generated image is invalid, stop model troubleshooting for now and finish the core product with deterministic visuals.
 
-Run from PowerShell:
+## Existing working route
+
+Job description -> JD analyzer -> cheatsheet builder -> deterministic SVG visuals -> Playwright A4 PNG.
+
+The public Render deployment cannot access your PC's GPU or local model files. Keep `LOCAL_IMAGE_ENGINE` disabled on Render. The deployed site uses deterministic visuals.
+
+## Optional local test (not required for core app)
+
+On Windows, from PowerShell:
 
 ```powershell
 cd D:\JD_Interview_Cheatsheet
-.local-image-engine\setup_sd_turbo.bat
+.sd-turbo-env\Scripts\python.exe local-image-engine\test_sd_turbo.py
 ```
 
-The setup script uses the dedicated `sd-turbo-env` environment and redirects Hugging Face cache, pip cache and temporary files to D:\. It skips dependency installation if the environment already has the required imports. The first model download/load can take a long time; later runs should reuse `D:\HF_CACHE`.
-
-## Flow
-
-JD -> visual planner -> optional local image -> deterministic technical visuals -> A4 compositor -> PNG
-
-## Deployment limitation
-
-The public Render deployment cannot access the GPU or model files on your PC. Keep `LOCAL_IMAGE_ENGINE` disabled on Render. The deployed site currently uses deterministic visuals. To use SD-Turbo in the actual generation flow, the Node backend and model must run on the same PC, or a secure local-to-web bridge must be built. Render cannot access local Windows files directly.
+Model cache/temp/pip cache should be directed to D:\. Do not repeat this test unless image-model work is resumed later.
