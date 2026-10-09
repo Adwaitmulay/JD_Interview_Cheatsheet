@@ -4,7 +4,7 @@ from pathlib import Path
 MODEL = "stabilityai/sd-turbo"
 OUT = Path("local-image-engine/sd_turbo_test.png")
 
-print("=== SD-TURBO TEST ===")
+print("=== SD-TURBO TEST (VAE UPSCALE FIX) ===")
 import torch
 print("CUDA:", torch.cuda.is_available())
 if torch.cuda.is_available():
@@ -22,6 +22,13 @@ pipe = AutoPipelineForText2Image.from_pretrained(
 
 if torch.cuda.is_available():
     pipe = pipe.to("cuda")
+    # Black/NaN images can result from half-precision VAE decoding on some GPUs.
+    # Decode in float32 while retaining the half-precision denoiser.
+    try:
+        pipe.upcast_vae()
+        print("VAE upcast to float32")
+    except (AttributeError, RuntimeError) as exc:
+        print("VAE upcast unavailable:", exc)
     pipe.enable_attention_slicing()
 
 print("Model loaded in %.1fs" % (time.time() - started))
@@ -45,3 +52,4 @@ OUT.parent.mkdir(parents=True, exist_ok=True)
 image.save(OUT)
 print("Generated:", OUT)
 print("Generation time: %.1fs" % (time.time() - started))
+print("RGB extrema:", image.convert("RGB").getextrema())
