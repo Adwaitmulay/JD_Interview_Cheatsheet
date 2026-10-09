@@ -19,15 +19,50 @@ function codeOf(skill) {
   if (topic?.code) return topic.code;
   const detailed = arr(skill.sections).find(s => s.code);
   if (detailed?.code) return detailed.code;
-  return arr(skill.commands)[0] || arr(skill.oneLiners)[0] || "";
+
+  const name = String(skill.technology || "").toLowerCase();
+  const examples = [
+    [/\bsql\b|postgres|mysql/, "SELECT department, COUNT(*) AS total\\nFROM employees\\nGROUP BY department\\nORDER BY total DESC;"],
+    [/spring boot/, "@RestController\\n@GetMapping(\"/health\")\\nString health() { return \"ok\"; }"],
+    [/java/, "Map<String, Integer> counts = new HashMap<>();\\ncounts.merge(key, 1, Integer::sum);"],
+    [/python/, "from collections import Counter\\ncounts = Counter(items)\\nprint(counts.most_common(3))"],
+    [/javascript|node/, "const counts = items.reduce((m, x) =>\\n  m.set(x, (m.get(x) || 0) + 1), new Map());"],
+    [/docker/, "docker build -t app .\\ndocker run --rm -p 8080:8080 app"],
+    [/git/, "git switch -c feature/name\\ngit add . && git commit -m \"feat: change\""],
+    [/aws|cloud/, "aws sts get-caller-identity\\naws s3 ls"],
+    [/html|css/, "<main class=\"container\">\\n  <h1>Accessible UI</h1>\\n</main>"],
+    [/c\+\+/, "std::unordered_map<std::string, int> freq;\\nfor (const auto& x : items) ++freq[x];"]
+  ];
+  const match = examples.find(([pattern]) => pattern.test(name));
+  if (match) return match[1].replace(/\\\\n/g, "\n");
+  return arr(skill.commands)[0] || arr(skill.oneLiners)[0] || "Review the key API, one common operation, and its failure case.";
+}
+
+function uniqueItems(items) {
+  const seen = new Set();
+  return arr(items).filter(item => {
+    const text = String(typeof item === "string" ? item : item?.topic || item?.question || "").trim();
+    const key = text.toLowerCase();
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function compactSkill(skill) {
-  const tools = [
+  const tools = uniqueItems([
     ...arr(skill.modules),
     ...arr(skill.libraries),
-    ...arr(skill.tools)
-  ];
+    ...arr(skill.tools),
+    ...arr(skill.databases)
+  ]).slice(0, 8);
+
+  const core = uniqueItems([...arr(skill.priorityTopics), ...arr(skill.fundamentals)]).slice(0, 5);
+  const concepts = uniqueItems([...arr(skill.concepts), ...arr(skill.dataStructures), ...arr(skill.algorithms)]).filter(item =>
+    !core.some(topic => String(topic).toLowerCase() === String(item).toLowerCase())
+  ).slice(0, 6);
+  const questions = uniqueItems(skill.interviewQuestions).slice(0, 4);
+  const revision = uniqueItems(skill.quickRevision).slice(0, 6);
 
   return `
   <section class="skill">
@@ -36,12 +71,12 @@ function compactSkill(skill) {
       <span>${esc(skill.experienceLevel)} · ${esc(skill.focus)}</span>
     </div>
     <div class="grid">
-      <article><h3>CORE</h3><ul>${list([...arr(skill.priorityTopics), ...arr(skill.fundamentals)],5)}</ul></article>
-      <article><h3>CONCEPTS / DSA</h3><ul>${list([...arr(skill.concepts), ...arr(skill.dataStructures), ...arr(skill.algorithms)],6)}</ul></article>
-      <article class="tools"><h3>TOOLS / DB</h3><p>${esc([...tools.slice(0,6), ...arr(skill.databases).slice(0,3)].join(" · "))}</p></article>
+      <article><h3>CORE</h3><ul>${list(core,5)}</ul></article>
+      <article><h3>CONCEPTS / DSA</h3><ul>${list(concepts,6)}</ul></article>
+      <article class="tools"><h3>TOOLS / DB</h3><p>${esc(tools.join(" · "))}</p></article>
       <article class="code"><h3>CODE / COMMAND</h3><code>${esc(codeOf(skill)).slice(0,360)}</code></article>
-      <article class="questions"><h3>INTERVIEW QUESTIONS</h3><ol>${list(skill.interviewQuestions,4)}</ol></article>
-      <article class="revision"><h3>QUICK REVISION</h3><p>${esc(arr(skill.quickRevision).slice(0,8).join(" · "))}</p></article>
+      <article class="questions"><h3>INTERVIEW QUESTIONS</h3><ol>${list(questions,4)}</ol></article>
+      <article class="revision"><h3>QUICK REVISION</h3><p>${esc(revision.join(" · "))}</p></article>
     </div>
   </section>`;
 }
@@ -77,10 +112,10 @@ article.code{grid-column:span 2;min-height:52px}
 article.questions{grid-column:span 2;min-height:61px}
 article.revision{grid-column:span 2;min-height:32px}
 h3{font-size:6.4px;margin:0 0 3px;letter-spacing:.5px;border-bottom:1px solid #ddd;padding-bottom:2px}
-ul,ol{margin:0;padding-left:11px;font-size:6.6px;line-height:1.28}
+ul,ol{margin:0;padding-left:11px;font-size:7px;line-height:1.3}
 li{margin:0 0 2px}
-p{margin:0;font-size:6.6px;line-height:1.3;word-break:break-word}
-code{display:block;background:#f1f1f1;padding:4px;font-family:Consolas,monospace;font-size:6px;line-height:1.2;white-space:pre-wrap;max-height:35px;overflow:hidden}
+p{margin:0;font-size:7px;line-height:1.35;word-break:break-word}
+code{display:block;background:#f1f1f1;padding:4px;font-family:Consolas,monospace;font-size:6.4px;line-height:1.25;white-space:pre-wrap;max-height:35px;overflow:hidden}
 .footer{text-align:center;font-size:5.5px;color:#777;margin-top:5px}
 </style></head>
 <body><div class="page">
