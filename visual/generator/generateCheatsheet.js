@@ -17,27 +17,28 @@ function list(items=[], n=4) {
 function codeOf(skill) {
   const topic = arr(skill.topics).find(t => t.code);
   if (topic?.code) return topic.code;
-  const detailed = arr(skill.sections).find(s => s.code);
-  if (detailed?.code) return detailed.code;
 
+  // Prefer runnable, technology-specific examples over generic knowledge-base prose.
   const name = String(skill.technology || "").toLowerCase();
   const examples = [
-    [/\bsql\b|postgres|mysql/, "SELECT department, COUNT(*) AS total\\nFROM employees\\nGROUP BY department\\nORDER BY total DESC;"],
-    [/spring boot/, "@RestController\\n@GetMapping(\"/health\")\\nString health() { return \"ok\"; }"],
-    [/java/, "Map<String, Integer> counts = new HashMap<>();\\ncounts.merge(key, 1, Integer::sum);"],
-    [/python/, "from collections import Counter\\ncounts = Counter(items)\\nprint(counts.most_common(3))"],
-    [/javascript|node/, "const counts = items.reduce((m, x) =>\\n  m.set(x, (m.get(x) || 0) + 1), new Map());"],
-    [/docker/, "docker build -t app .\\ndocker run --rm -p 8080:8080 app"],
-    [/git/, "git switch -c feature/name\\ngit add . && git commit -m \"feat: change\""],
-    [/aws|cloud/, "aws sts get-caller-identity\\naws s3 ls"],
-    [/html|css/, "<main class=\"container\">\\n  <h1>Accessible UI</h1>\\n</main>"],
-    [/c\+\+/, "std::unordered_map<std::string, int> freq;\\nfor (const auto& x : items) ++freq[x];"]
+    [/\\bsql\\b|postgres|mysql/, "SELECT department, COUNT(*) AS total\nFROM employees\nGROUP BY department\nORDER BY total DESC;"],
+    [/spring boot/, "@RestController\n@GetMapping(\"/health\")\nString health() { return \"ok\"; }"],
+    [/\\bjava\\b/, "Map<String, Integer> counts = new HashMap<>();\ncounts.merge(key, 1, Integer::sum);"],
+    [/python/, "from collections import Counter\ncounts = Counter(items)\nprint(counts.most_common(3))"],
+    [/javascript|node/, "const counts = items.reduce((m, x) =>\n  m.set(x, (m.get(x) || 0) + 1), new Map());"],
+    [/docker/, "docker build -t app .\ndocker run --rm -p 8080:8080 app"],
+    [/\\bgit\\b/, "git switch -c feature/name\ngit add . && git commit -m \"feat: change\""],
+    [/aws|cloud/, "aws sts get-caller-identity\naws s3 ls"],
+    [/html|css/, "<main class=\"container\">\n  <h1>Accessible UI</h1>\n</main>"],
+    [/c\\+\\+/, "std::unordered_map<std::string, int> freq;\nfor (const auto& x : items) ++freq[x];"]
   ];
   const match = examples.find(([pattern]) => pattern.test(name));
-  if (match) return match[1].replace(/\\n/g, "\n");
+  if (match) return match[1];
+
+  const detailed = arr(skill.sections).find(s => s.code);
+  if (detailed?.code) return detailed.code;
   return arr(skill.commands)[0] || arr(skill.oneLiners)[0] || "Review the key API, one common operation, and its failure case.";
 }
-
 function uniqueItems(items) {
   const seen = new Set();
   return arr(items).filter(item => {
