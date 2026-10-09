@@ -15,10 +15,7 @@ function list(items=[], n=4) {
 }
 
 function codeOf(skill) {
-  const topic = arr(skill.topics).find(t => t.code);
-  if (topic?.code) return topic.code;
-
-  // Prefer runnable, technology-specific examples over generic knowledge-base prose.
+  // Prefer concrete examples for known technologies before generic knowledge-base snippets.
   const name = String(skill.technology || "").toLowerCase();
   const examples = [
     [/\\bsql\\b|postgres|mysql/, "SELECT department, COUNT(*) AS total\nFROM employees\nGROUP BY department\nORDER BY total DESC;"],
@@ -35,6 +32,8 @@ function codeOf(skill) {
   const match = examples.find(([pattern]) => pattern.test(name));
   if (match) return match[1];
 
+  const topic = arr(skill.topics).find(t => t.code && !/^(SQL is used to query and manipulate relational data\\.?|Explain the definition)/i.test(String(t.code).trim()));
+  if (topic?.code) return topic.code;
   const detailed = arr(skill.sections).find(s => s.code);
   if (detailed?.code) return detailed.code;
   return arr(skill.commands)[0] || arr(skill.oneLiners)[0] || "Review the key API, one common operation, and its failure case.";
