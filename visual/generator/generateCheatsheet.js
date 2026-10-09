@@ -15,24 +15,23 @@ function list(items=[], n=4) {
 }
 
 function codeOf(skill) {
-  // Prefer concrete examples for known technologies before generic knowledge-base snippets.
-  const name = String(skill.technology || "").toLowerCase();
+  const name = String(skill.technology || "").toLowerCase().trim();
   const examples = [
-    [/\\bsql\\b|postgres|mysql/, "SELECT department, COUNT(*) AS total\nFROM employees\nGROUP BY department\nORDER BY total DESC;"],
-    [/spring boot/, "@RestController\n@GetMapping(\"/health\")\nString health() { return \"ok\"; }"],
-    [/\\bjava\\b/, "Map<String, Integer> counts = new HashMap<>();\ncounts.merge(key, 1, Integer::sum);"],
-    [/python/, "from collections import Counter\ncounts = Counter(items)\nprint(counts.most_common(3))"],
-    [/javascript|node/, "const counts = items.reduce((m, x) =>\n  m.set(x, (m.get(x) || 0) + 1), new Map());"],
-    [/docker/, "docker build -t app .\ndocker run --rm -p 8080:8080 app"],
-    [/\\bgit\\b/, "git switch -c feature/name\ngit add . && git commit -m \"feat: change\""],
-    [/aws|cloud/, "aws sts get-caller-identity\naws s3 ls"],
-    [/html|css/, "<main class=\"container\">\n  <h1>Accessible UI</h1>\n</main>"],
-    [/c\\+\\+/, "std::unordered_map<std::string, int> freq;\nfor (const auto& x : items) ++freq[x];"]
+    { test: n => n === "sql" || n.includes("postgres") || n.includes("mysql") || n.includes("database"), code: "SELECT department, COUNT(*) AS total\nFROM employees\nGROUP BY department\nORDER BY total DESC;" },
+    { test: n => n.includes("spring boot"), code: "@RestController\n@GetMapping(\"/health\")\nString health() { return \"ok\"; }" },
+    { test: n => n === "java" || n.includes("java "), code: "Map<String, Integer> counts = new HashMap<>();\ncounts.merge(key, 1, Integer::sum);" },
+    { test: n => n.includes("python"), code: "from collections import Counter\ncounts = Counter(items)\nprint(counts.most_common(3))" },
+    { test: n => n.includes("javascript") || n === "node" || n.includes("node.js"), code: "const counts = items.reduce((m, x) =>\n  m.set(x, (m.get(x) || 0) + 1), new Map());" },
+    { test: n => n.includes("docker"), code: "docker build -t app .\ndocker run --rm -p 8080:8080 app" },
+    { test: n => n === "git" || n.startsWith("git "), code: "git switch -c feature/name\ngit add . && git commit -m \"feat: change\"" },
+    { test: n => n.includes("aws") || n.includes("cloud"), code: "aws sts get-caller-identity\naws s3 ls" },
+    { test: n => n.includes("html") || n.includes("css"), code: "<main class=\"container\">\n  <h1>Accessible UI</h1>\n</main>" },
+    { test: n => n === "c++" || n.includes("cpp"), code: "std::unordered_map<std::string, int> freq;\nfor (const auto& x : items) ++freq[x];" }
   ];
-  const match = examples.find(([pattern]) => pattern.test(name));
-  if (match) return match[1];
+  const match = examples.find(item => item.test(name));
+  if (match) return match.code;
 
-  const topic = arr(skill.topics).find(t => t.code && !/^(SQL is used to query and manipulate relational data\\.?|Explain the definition)/i.test(String(t.code).trim()));
+  const topic = arr(skill.topics).find(t => t.code && !/^(SQL is used to query and manipulate relational data\.?|Explain the definition)/i.test(String(t.code).trim()));
   if (topic?.code) return topic.code;
   const detailed = arr(skill.sections).find(s => s.code);
   if (detailed?.code) return detailed.code;
