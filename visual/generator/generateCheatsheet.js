@@ -34,7 +34,7 @@ function codeOf(skill) {
     [/c\+\+/, "std::unordered_map<std::string, int> freq;\\nfor (const auto& x : items) ++freq[x];"]
   ];
   const match = examples.find(([pattern]) => pattern.test(name));
-  if (match) return match[1].replace(/\\\\n/g, "\n");
+  if (match) return match[1].replace(/\\n/g, "\n");
   return arr(skill.commands)[0] || arr(skill.oneLiners)[0] || "Review the key API, one common operation, and its failure case.";
 }
 
