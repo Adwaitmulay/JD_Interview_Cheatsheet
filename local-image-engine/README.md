@@ -1,53 +1,34 @@
 # Local Image Engine
 
-This component is intentionally local-only.
+This component is optional and local-only.
 
 ## Hard rules
 
-- No GPT.
-- No ChatGPT image generation.
-- No OpenAI image API.
-- No third-party image-generation API.
-- No paid inference service.
-- No cloud image-generation dependency.
+- No GPT or ChatGPT image generation.
+- No OpenAI image-generation API.
+- No paid or hosted image-generation service.
+- Exact technical diagrams, labels, arrows, algorithms and code remain deterministic SVG/Canvas.
+- The diffusion model may create only supplementary imagery; do not trust it to render exact text or technical notation.
 
-## Role
+## Model choice and test status
 
-The engine generates optional visual assets locally. Exact technical diagrams remain deterministic SVG/Canvas so labels, arrows, algorithms and code stay accurate.
-
-## Model choice
-
-Default benchmark model: `stabilityai/sd-turbo`.
-
-Why:
-- open-weight Stable Diffusion family
-- designed for very low inference steps
-- much better fit for a limited GPU than a full SDXL/FLUX pipeline
-- used only for supplementary visual assets
-- exact code, labels and technical diagrams are still generated deterministically
-
-Default: 384x384, 4 inference steps.
+The selected model is `stabilityai/sd-turbo`. The model loaded and generated a 384x384 test PNG in about 5 seconds after loading. The first load took about 15 minutes in the reported test. A NumPy invalid-cast warning appeared, so inspect `local-image-engine\sd_turbo_test.png` before accepting visual quality. End-to-end A4 output with SD-Turbo is not yet verified.
 
 ## Local setup (Windows + NVIDIA)
 
-PowerShell:
+Run from PowerShell:
 
 ```powershell
 cd D:\JD_Interview_Cheatsheet
-py -3.11 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
-.\.venv\Scripts\python.exe -m pip install -r local-image-engine\requirements.txt
-$env:LOCAL_IMAGE_ENGINE="1"
-$env:PYTHON_BIN="$PWD\.venv\Scripts\python.exe"
-$env:LOCAL_IMAGE_MODEL="stabilityai/sd-turbo"
-node backend\server.js
+.local-image-engine\setup_sd_turbo.bat
 ```
 
-The first model run downloads the checkpoint locally. That download is setup time, not generation time.
+The setup script uses the dedicated `sd-turbo-env` environment and redirects Hugging Face cache, pip cache and temporary files to D:\. It skips dependency installation if the environment already has the required imports. The first model download/load can take a long time; later runs should reuse `D:\HF_CACHE`.
 
 ## Flow
 
-JD -> visual planner -> local image asset -> deterministic SVG technical visuals -> A4 compositor -> PNG
+JD -> visual planner -> optional local image -> deterministic technical visuals -> A4 compositor -> PNG
 
-The Render web service does not call a remote image API. If local diffusion is unavailable on the deployment machine, deterministic technical visuals are used instead.
+## Deployment limitation
+
+The public Render deployment cannot access the GPU or model files on your PC. Keep `LOCAL_IMAGE_ENGINE` disabled on Render. The deployed site currently uses deterministic visuals. To use SD-Turbo in the actual generation flow, the Node backend and model must run on the same PC, or a secure local-to-web bridge must be built. Render cannot access local Windows files directly.
