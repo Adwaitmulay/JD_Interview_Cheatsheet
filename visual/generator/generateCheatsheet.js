@@ -24,11 +24,11 @@ function codeOf(skill) {
     "postgresql": "CREATE INDEX idx_users_email ON users(email);\\nSELECT id, email FROM users WHERE email = $1;",
     "sqlalchemy": "stmt = select(User).where(User.email == email)\\nuser = session.scalar(stmt)",
     "python": "from collections import Counter\\ncounts = Counter(items)\\nprint(counts.most_common(3))",
-    "fastapi": "from fastapi import FastAPI\\napp = FastAPI()\\n@app.get(\\"/health\\")\\ndef health(): return {\\"status\\": \\"ok\\"}",
+    "fastapi": `from fastapi import FastAPI\napp = FastAPI()\n@app.get("/health")\ndef health(): return {"status": "ok"}`,
     "docker": "docker build -t api .\\ndocker run --rm -p 8000:8000 api",
-    "git": "git switch -c feature/api\\ngit add . && git commit -m \\"feat: add API\\"",
+    "git": `git switch -c feature/api\ngit add . && git commit -m "feat: add API"`,
     "aws": "aws sts get-caller-identity\\naws s3 ls",
-    "spring boot": "@RestController\\n@GetMapping(\\"/health\\")\\nString health() { return \\"ok\\"; }",
+    "spring boot": `@RestController\n@GetMapping("/health")\nString health() { return "ok"; }`,
     "java": "Map<String, Integer> counts = new HashMap<>();\\ncounts.merge(key, 1, Integer::sum);",
     "javascript": "const counts = items.reduce((m, x) =>\\n  m.set(x, (m.get(x) || 0) + 1), new Map());"
   };
